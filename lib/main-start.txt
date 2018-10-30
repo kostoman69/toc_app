@@ -1,0 +1,366 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:meta/meta.dart';
+
+void main() => runApp(new MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Tour of Crete',
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: MyHomePage(title: 'Tour of Crete 2019'),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  final String title;
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  PersistentBottomSheetController _controller;
+
+  MyHomePage({Key key, @required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      key: _scaffoldKey,
+      appBar: new AppBar(
+          title: Row(
+            children: <Widget>[
+              new Container(
+                width: 40.0,
+                height: 40.0,
+                alignment: Alignment.centerLeft,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('graphics/toc_logo.png'),
+                      fit: BoxFit.fill
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: new Text (title),
+              ),
+            ],
+          )
+      ),
+      body: Container(
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage("graphics/toc_bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: new Center(
+          child: new Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new TextLink(
+                    description: 'ToC web site',
+                    url: "http://www.tourofcrete.gr",
+                  ),
+                ),
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new TextLink(
+                    description: 'Live view',
+                    url: "http://live2018.tourofcrete.gr:8080/?locale=en&token=WzGsIqGEdUdfARM6STgAMa6cExf5ZSpi",
+                  ),
+                ),
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new TextLink(
+                    description: 'Daily standings',
+                    url: "http://live2018.tourofcrete.gr",
+                  ),
+                ),
+                new Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Material (
+                      color: Colors.transparent,
+                      child: Container(
+                          child: InkWell(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            highlightColor: Colors.brown,
+                            splashColor: Colors.grey,
+                            onTap: () {
+                              _persistentBottomSheet();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Contact Us',
+                                style: new TextStyle(color: Colors.deepOrange,
+                                    fontFamily:'GloriaHallelujah',
+                                    fontSize: 31.0 ) ,
+                              ),
+                            ),
+                          )
+                      )
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _persistentBottomSheet() {
+    _controller = _scaffoldKey.currentState.showBottomSheet((context) {
+      return new Container(
+        //color: Colors.orangeAccent,
+        //height: 250.0,
+        decoration: new BoxDecoration(
+          gradient: new LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [0.1, 0.9],
+            colors: [
+            Colors.orangeAccent[400],
+            Colors.orangeAccent[100],
+            ],
+          ),
+        ),
+          child: new Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new GestureDetector (
+                onTap: () {
+                  _controller.close();
+                  launch("tel://+306946420706");
+              },
+              child:Container(
+                child: new  Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        maxRadius:25.0,
+                        backgroundImage: AssetImage('graphics/kostoman.jpg'),
+                      ),
+                    ),
+                    new Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: new Text(
+                          'Eva Vagionaki',
+                          textAlign: TextAlign.left,
+                          style: new TextStyle(color: Colors.black,
+                              fontFamily: "Roboto",
+                              fontSize: 21.0 ) ,
+                        )),
+                  ],
+                ),
+              ),
+              ),
+              new GestureDetector (
+                onTap: () {
+                  _controller.close();
+                  launch("tel://+306946420706");
+                },
+                child:Container(
+                  child: new  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          maxRadius:25.0,
+                          backgroundImage: AssetImage('graphics/kostoman.jpg'),
+                        ),
+                      ),
+                      new Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: new Text(
+                            'Fanis Kostomanolakis',
+                            textAlign: TextAlign.left,
+                            style: new TextStyle(color: Colors.black,
+                                fontSize: 21.0 ) ,
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ));
+    });
+  }
+
+
+}
+
+
+class ChoiceButton extends StatelessWidget {
+  final String description;
+  final String url;
+  final String assetKey;
+
+  const ChoiceButton({
+    Key key,
+    @required this.description,
+    @required this.url,
+    @required this.assetKey,
+  })  : assert(description != null),
+        assert(url != null),
+        assert(assetKey != null),
+        super(key: key);
+
+  Widget build(BuildContext context) {
+
+    return  Material (
+        color: Colors.transparent,
+        child: Container(
+            child: InkWell(
+              borderRadius: new BorderRadius.circular(25.0),
+              highlightColor: Colors.orange,
+              splashColor: Colors.green,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WebViewScreen(url:this.url)),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: new Container(
+                        width: 150.0,
+                        height: 150.0,
+                        alignment: Alignment.centerLeft,
+                        decoration: new BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(this.assetKey),
+                              fit: BoxFit.fill
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: new Text(description),
+                    )
+                  ],
+                ),
+              ),
+            )
+        )
+    );
+  }
+}
+
+class TextLink extends StatelessWidget {
+  final String description;
+  final String url;
+
+  const TextLink({
+    Key key,
+    @required this.description,
+    @required this.url,
+  })  : assert(description != null),
+        assert(url != null),
+        super(key: key);
+
+  Widget build(BuildContext context) {
+
+    return  Material (
+        color: Colors.transparent,
+        child: Container(
+            child: InkWell(
+              borderRadius: new BorderRadius.circular(25.0),
+              highlightColor: Colors.brown,
+              splashColor: Colors.grey,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WebViewScreen(url:this.url)),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    this.description,
+                    style: new TextStyle(color: Colors.deepOrange,
+                        fontFamily:'GloriaHallelujah',
+                        fontSize: 31.0 ) ,
+                ),
+              ),
+            )
+        )
+    );
+  }
+}
+
+class TextLinkToBottomSheet extends StatelessWidget {
+  final String description;
+  final String sheet;
+
+  const TextLinkToBottomSheet({
+    Key key,
+    @required this.description,
+    @required this.sheet,
+  })  : assert(description != null),
+        assert(sheet != null),
+        super(key: key);
+
+  Widget build(BuildContext context) {
+
+    return  Material (
+        color: Colors.transparent,
+        child: Container(
+            child: InkWell(
+              borderRadius: new BorderRadius.circular(25.0),
+              highlightColor: Colors.brown,
+              splashColor: Colors.green,
+              onTap: () {
+                if (this.sheet == 'PERSISTENT') {
+                  //_persistentBottomSheet();
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  this.description,
+                  style: new TextStyle(color: Colors.deepOrange,
+                      fontFamily:'GloriaHallelujah',
+                      fontSize: 31.0 ) ,
+                ),
+              ),
+            )
+        )
+    );
+  }
+}
+
+class WebViewScreen extends StatelessWidget {
+  final String url;
+
+  WebViewScreen({Key key, @required this.url}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebviewScaffold(
+        url: this.url,
+        appBar: new AppBar(
+          //title: new Image.asset('graphics/toc_logo.png', fit: BoxFit.scaleDown),
+           title: new Text ("Tour of Crete 2019"),
+         ),
+        );
+  }
+}
+
+
