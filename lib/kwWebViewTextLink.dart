@@ -14,28 +14,28 @@ class KwWebViewTextLink extends StatelessWidget {
         super(key: key);
 
   Widget build(BuildContext context) {
-    return new Padding(
+    return  Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Material(
+        child:  Material(
             color: Colors.transparent,
-            child: Center(
-              child: Container(
-                  child: InkWell(
-                    borderRadius: new BorderRadius.circular(25.0),
+            child:  Center(
+              child:  Container(
+                  child:  InkWell(
+                    borderRadius:  BorderRadius.circular(25.0),
                     highlightColor: Colors.brown,
                     splashColor: Colors.grey,
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => WebViewScreen(url: this.url)),
+                         MaterialPageRoute(
+                            builder: (context) =>  WebViewScreen(url: this.url)),
                       );
                     },
-                    child: Padding(
+                    child:  Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
+                      child:  Text(
                         this.description,
-                        style: new TextStyle(
+                        style:  TextStyle(
                             color: Colors.deepOrange,
                             fontFamily: 'GloriaHallelujah',
                             fontSize: 31.0),
@@ -54,11 +54,11 @@ class WebViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
+    return  WebviewScaffold(
       url: this.url,
-      appBar: new AppBar(
+      appBar:  AppBar(
         //title: new Image.asset('graphics/toc_logo.png', fit: BoxFit.scaleDown),
-        title: new Text("Tour of Crete 2019"),
+        title:  Text("Tour of Crete 2019"),
       ),
     );
   }

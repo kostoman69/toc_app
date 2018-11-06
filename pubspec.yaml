@@ -34,6 +34,8 @@ flutter:
     - graphics/toc_logo.png
     - graphics/toc_bg.png
     - graphics/kostoman.jpg
+    - graphics/eva.jpg
+    - graphics/fanis.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

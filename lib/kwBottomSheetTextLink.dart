@@ -10,24 +10,24 @@ class KwBottomSheetTextLink extends StatelessWidget {
       : _scaffoldKey = key;
 
   Widget build(BuildContext context) {
-    return new Padding(
+    return  Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Material(
+        child:  Material(
             color: Colors.transparent,
-            child: Container(
-                child: Center(
-                  child: InkWell(
-                    borderRadius: new BorderRadius.circular(25.0),
+            child:  Container(
+                child:  Center(
+                  child:  InkWell(
+                    borderRadius:  BorderRadius.circular(25.0),
                     highlightColor: Colors.brown,
                     splashColor: Colors.grey,
                     onTap: () {
                       _persistentBottomSheet();
                     },
-                    child: Padding(
+                    child:  Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
+                      child:  Text(
                         this.title,
-                        style: new TextStyle(
+                        style:  TextStyle(
                             color: Colors.deepOrange,
                             fontFamily: 'GloriaHallelujah',
                             fontSize: 31.0),
@@ -43,8 +43,8 @@ class KwBottomSheetTextLink extends StatelessWidget {
       return new Container(
         //color: Colors.orangeAccent,
         //height: 250.0,
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
+          decoration:  BoxDecoration(
+            gradient:  LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               stops: [0.1, 0.9],
@@ -54,59 +54,59 @@ class KwBottomSheetTextLink extends StatelessWidget {
               ],
             ),
           ),
-          child: new Column(
+          child:  Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              new GestureDetector(
+               GestureDetector(
                 onTap: () {
                   _controller.close();
-                  launch("tel://+306946420706");
+                  launch("tel://+306945219843");
                 },
-                child: Container(
-                  child: new Row(
+                child:  Container(
+                  child:  Row(
                     children: <Widget>[
-                      Padding(
+                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          maxRadius: 20.0,
-                          backgroundImage: AssetImage('graphics/kostoman.jpg'),
+                        child:  CircleAvatar(
+                          maxRadius: 25.0,
+                          backgroundImage:  AssetImage('graphics/eva.jpg'),
                         ),
                       ),
-                      Icon(Icons.phone,color:Colors.green, size:35.0),
-                      Padding(
+                       Icon(Icons.phone,color:Colors.green, size:35.0),
+                       Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: new Text(
+                          child:  Text(
                             'Eva Vagionaki',
                             textAlign: TextAlign.left,
-                            style: new TextStyle(
+                            style:  TextStyle(
                                 color: Colors.black, fontSize: 18.0),
                           )),
                     ],
                   ),
                 ),
               ),
-              new GestureDetector(
+               GestureDetector(
                 onTap: () {
                   _controller.close();
-                  launch("tel://+306946420706");
+                  launch("tel://+306945230444");
                 },
-                child: Container(
-                  child: new Row(
+                child:  Container(
+                  child:  Row(
                     children: <Widget>[
-                      Padding(
+                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          maxRadius: 20.0,
-                          backgroundImage: AssetImage('graphics/kostoman.jpg'),
+                        child:  CircleAvatar(
+                          maxRadius: 25.0,
+                          backgroundImage:  AssetImage('graphics/fanis.jpg'),
                         ),
                       ),
-                      Icon(Icons.phone,color:Colors.green, size:35.0),
-                      new Padding(
+                       Icon(Icons.phone,color:Colors.green, size:35.0),
+                       Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: new Text(
+                          child:  Text(
                             'Fanis Kostomanolakis',
                             textAlign: TextAlign.left,
-                            style: new TextStyle(
+                            style:  TextStyle(
                                 color: Colors.black, fontSize: 18.0),
                           )),
                     ],
