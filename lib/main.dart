@@ -65,11 +65,11 @@ class MyHomePage extends StatelessWidget {
                  KwWebViewTextLink(
                   description: 'Live view',
                   url:
-                      "http://live2019.tourofcrete.gr:8080/?locale=en&token=WzGsIqGEdUdfARM6STgAMa6cExf5ZSpi",
+                      "http://live.tourofcrete.gr:8080/?locale=en&token=WzGsIqGEdUdfARM6STgAMa6cExf5ZSpi",
                 ),
                  KwWebViewTextLink(
                   description: 'Daily standings',
-                  url: "http://live2019.tourofcrete.gr",
+                  url: "http://live.tourofcrete.gr",
                 ),
                  KwBottomSheetTextLink(
                   key: _scaffoldKey,

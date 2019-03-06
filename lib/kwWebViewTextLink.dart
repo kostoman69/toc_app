@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+//import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class KwWebViewTextLink extends StatelessWidget {
   final String description;
@@ -25,11 +28,15 @@ class KwWebViewTextLink extends StatelessWidget {
                     highlightColor: Colors.brown,
                     splashColor: Colors.grey,
                     onTap: () {
+                        //launch(this.url,forceWebView:false);
+                      //_launchURL(this.url);
+                      ///*
                       Navigator.push(
                         context,
                          MaterialPageRoute(
                             builder: (context) =>  WebViewScreen(url: this.url)),
                       );
+                      //*/
                     },
                     child:  Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -54,6 +61,25 @@ class WebViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    return WebView(
+      key: UniqueKey(),
+      javascriptMode: JavascriptMode.unrestricted,
+      initialUrl: this.url,
+    );
+    */
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tour of Crete 2019'),
+      ),
+      body:  WebView(
+        initialUrl: this.url,
+        javascriptMode: JavascriptMode.unrestricted,
+      ),
+    );
+
+    /*
     return  WebviewScaffold(
       url: this.url,
       appBar:  AppBar(
@@ -61,5 +87,17 @@ class WebViewScreen extends StatelessWidget {
         title:  Text("Tour of Crete 2019"),
       ),
     );
+    */
+  }
+}
+
+
+
+_launchURL(url) async {
+
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView:false);
+  } else {
+    throw 'Could not launch $url';
   }
 }
