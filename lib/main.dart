@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme:  ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home:  MyHomePage(title: 'Tour of Crete 2019'),
+      home:  MyHomePage(title: 'Tour of Crete 2020'),
     );
   }
 }
